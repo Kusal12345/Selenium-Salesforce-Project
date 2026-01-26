@@ -39,6 +39,7 @@ public class MyFirstTest {
             // 6. Close browser to save your 16GB RAM
             driver.quit();
          // Automation test completed for Salesforce.
+         //Just checking push working or not
         }
     }
 }
