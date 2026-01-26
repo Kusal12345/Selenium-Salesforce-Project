@@ -8,36 +8,36 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyFirstTest {
     public static void main(String[] args) {
-        // 1. Launch Chrome
+        
+        // 1. Launch Chrome Browser
         WebDriver driver = new ChromeDriver();
         
-        // Wait up to 30 seconds for elements to appear
+        // 2. Set a Smart Wait (30 seconds)
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         try {
-            // 2. Navigate to Trailhead
+            // 3. Open Salesforce Trailhead
             driver.get("https://trailhead.salesforce.com/");
-            System.out.println("Opening Trailhead on Chrome...");
+            
+            // 4. Print the Page Title (The simple line for tracking!)
+            System.out.println("The page title is: " + driver.getTitle());
 
-            // 3. Find the 'Login' button
-            // Salesforce often uses 'Login' or 'Log In'. This XPath finds both.
+            // 5. Find and Click the Login Button
             WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//a[contains(text(),'Log') or contains(text(),'Login')]")
             ));
             
-            // 4. Click the button
             loginButton.click();
-            System.out.println("Clicked the Login button!");
+            System.out.println("Successfully clicked Login button.");
 
-            // Stay on the login screen for 5 seconds
+            // Wait 5 seconds so you can see the result
             Thread.sleep(5000);
 
         } catch (Exception e) {
-            System.out.println("Error: Could not find or click the login button.");
-            e.printStackTrace();
+            System.out.println("An error occurred: " + e.getMessage());
         } finally {
-            // Close the browser to save your 16GB RAM
-            driver.quit(); 
+            // 6. Close browser to save your 16GB RAM
+            driver.quit();
         }
     }
 }
