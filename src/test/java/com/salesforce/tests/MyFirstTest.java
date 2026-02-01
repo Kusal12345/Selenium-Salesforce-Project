@@ -1,47 +1,41 @@
 package com.salesforce.tests;
 import java.time.Duration;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.salesforce.pages.HomePage;
 
 public class MyFirstTest {
     public static void main(String[] args) {
+        System.out.println("Starting simple PASS-style test run...");
         
         // 1. Launch Chrome Browser
         WebDriver driver = new ChromeDriver();
         
-        // 2. Set a Smart Wait (30 seconds)
-        //testing Selenium concepts and make it under correct package
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        // 2. Create HomePage with 30s wait
+        HomePage home = new HomePage(driver, Duration.ofSeconds(30));
 
         try {
-            // 3. Open Salesforce Trailhead
-            driver.get("https://trailhead.salesforce.com/");
+            // 3. Open Salesforce Trailhead using POM
+            home.open();
+            System.out.println("[PASS] Opened the home page");
             
-            // 4. Print the Page Title (The simple line for tracking!)
-            System.out.println("The page title is: " + driver.getTitle());
+            // 4. Print the Page Title
+            System.out.println("The page title is: " + home.getTitle());
 
-            // 5. Find and Click the Login Button
-            WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//a[contains(text(),'Log') or contains(text(),'Login')]")
-            ));
-            
-            loginButton.click();
-            System.out.println("Successfully clicked Login button.");
+            // 5. Click Login via the page object
+            home.clickLogin();
+            System.out.println("[PASS] Successfully clicked Login button.");
 
-            // Wait 5 seconds so you can see the result
-            Thread.sleep(5000);
+            // Wait 2 seconds so you can see the result
+            Thread.sleep(2000);
 
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
         } finally {
-            // 6. Close browser to save your 16GB RAM
+            // 6. Close browser
             driver.quit();
          // Automation test completed for Salesforce.
-         //Just checking push working or not
         }
+        System.out.println("Simple PASS-style test run completed.");
     }
 }
