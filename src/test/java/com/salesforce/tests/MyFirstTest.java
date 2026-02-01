@@ -1,3 +1,4 @@
+package com.salesforce.tests;
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ public class MyFirstTest {
         WebDriver driver = new ChromeDriver();
         
         // 2. Set a Smart Wait (30 seconds)
-        //testing Selenium concepts
+        //testing Selenium concepts and make it under correct package
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         try {
