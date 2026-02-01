@@ -13,7 +13,7 @@ public class MyFirstTest {
         WebDriver driver = new ChromeDriver();
         
         // 2. Set a Smart Wait (30 seconds)
-        //testing
+        //testing Selenium concepts
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         try {
